@@ -5,4 +5,8 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
+    <array name="tab_titles">
+        <item>Learning Leaders</item>
+        <item>Skill IQ Leaders</item>
+    </array>
 </resources>

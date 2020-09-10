@@ -3,15 +3,23 @@ package com.example.pluralsight;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pluralsight.adapters.ViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+
 public class MainActivity extends AppCompatActivity {
     private   Toolbar toolbar;
     private Button open_submit ;
+    private ViewPager viewPager;
+    private TabLayout tabLayout ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.apptoolbar);
         setSupportActionBar(toolbar);
         open_submit = findViewById(R.id.toolbar_submit_button);
+        viewPager = findViewById(R.id.main_activity_view_pager);
+        tabLayout = findViewById(R.id.main_activity_tabLayout);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override
