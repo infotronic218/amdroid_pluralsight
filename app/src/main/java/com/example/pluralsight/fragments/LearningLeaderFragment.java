@@ -33,10 +33,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LearningLeaderFragment extends Fragment {
-    private final String URL = "https://gadsapi.herokuapp.com/api/hours";
-    private StudentAdapter mTopLearnersAdapter;
-    private List<Student> mTopLearners = new ArrayList<>();
-    private RecyclerView mLearningLeaderRecyclerView;
+    private StudentAdapter mStudentAdapter;
+    private List<Student> mLearningLeader = new ArrayList<>();
 
     public static LearningLeaderFragment newInstance() {
         return new LearningLeaderFragment();
@@ -47,20 +45,21 @@ public class LearningLeaderFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.learning_leader_fragment,
                 container, false);
-        mLearningLeaderRecyclerView = view.findViewById(R.id.learning_leader_recycler_view);
-        mTopLearnersAdapter = new StudentAdapter(getContext(), mTopLearners);
-        mLearningLeaderRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mLearningLeaderRecyclerView.setAdapter(mTopLearnersAdapter);
-        mLearningLeaderRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mLearningLeaderRecyclerView.hasFixedSize();
-        fetchTopLearners();
+        RecyclerView learningLeaderRecyclerView = view.findViewById(R.id.learning_leaders_recycler_view);
+        mStudentAdapter = new StudentAdapter(getContext(), mLearningLeader);
+        learningLeaderRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        learningLeaderRecyclerView.setAdapter(mStudentAdapter);
+        learningLeaderRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        learningLeaderRecyclerView.hasFixedSize();
+        fetchLearningLeaders();
         return view;
     }
 
-    private void fetchTopLearners() {
+    private void fetchLearningLeaders() {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        String URL = "https://gadsapi.herokuapp.com/api/hours";
         final JsonArrayRequest jsonArrayRequest =
                 new JsonArrayRequest(URL,
                         new Response.Listener<JSONArray>() {
@@ -75,21 +74,21 @@ public class LearningLeaderFragment extends Fragment {
                                                 jsonObject.getInt("hours"),
                                                 jsonObject.getString("country"),
                                                 jsonObject.getString("badgeUrl"));
-                                        mTopLearners.add(student);
+                                        mLearningLeader.add(student);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                         progressDialog.dismiss();
                                     }
                                 }
-                                Collections.sort(mTopLearners, new Comparator<Student>() {
+                                Collections.sort(mLearningLeader, new Comparator<Student>() {
                                     @Override
                                     public int compare(Student s1, Student s2) {
                                         return -Integer.compare(s1.getHours(), s2.getHours());
                                     }
                                 });
-                                mTopLearnersAdapter.notifyDataSetChanged();
+                                mStudentAdapter.notifyDataSetChanged();
                                 progressDialog.dismiss();
-                                Log.println(Log.DEBUG, "DEB", String.valueOf(mTopLearners.size()) + "?????????????????//");
+                                Log.println(Log.DEBUG, "DEB", String.valueOf(mLearningLeader.size()) + "?????????????????//");
                             }
                         }, new Response.ErrorListener() {
                     @Override

@@ -1,5 +1,6 @@
 package com.example.pluralsight.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,22 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         return new ViewHolder(view);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Student student = students.get(position);
         holder.name.setText(student.getName());
-        holder.details.setText(String.format("%d Learning hours, %s", student.getHours(), student.getCountry()));
+        //TODO to refactor later
+       String details;
+        if (student.getScore() == 0) {
+            details = String.format("%d learning hours, %s", student.getHours(),
+                    student.getCountry());
+
+        } else {
+            details = String.format("%d skill IQ score, %s", student.getScore(),
+                    student.getCountry());
+        }
+        holder.details.setText(details);
 
     }
 
