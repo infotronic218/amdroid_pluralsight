@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/badge"
             android:layout_toEndOf="@id/badge"
-            android:textStyle="bold"
+            android:textFontWeight="20"
             android:text="@string/name"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/details"
@@ -39,7 +39,7 @@
             android:layout_marginTop="50dp"
             android:layout_toEndOf="@id/badge"
             android:text="@string/details"
-            android:textSize="12sp" />
+            android:textSize="15sp" />
 
     </RelativeLayout>
 

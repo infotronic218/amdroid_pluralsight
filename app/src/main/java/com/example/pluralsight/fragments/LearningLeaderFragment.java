@@ -52,22 +52,9 @@ public class LearningLeaderFragment extends Fragment {
         mLearningLeaderRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mLearningLeaderRecyclerView.setAdapter(mTopLearnersAdapter);
         mLearningLeaderRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        mLearningLeaderRecyclerView.hasFixedSize();
         fetchTopLearners();
         return view;
-    }
-
-    private void fetchTopLearnersFake() {
-        List<Student> students = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            students.add(new Student("0x kow+" + i + "+ma", 5 * i,
-                    20 * i, "BURKINA FASO", "abcd.com"));
-        }
-
-        mTopLearners = students;
-        mTopLearnersAdapter.notifyDataSetChanged();
-
-
     }
 
     private void fetchTopLearners() {
@@ -97,7 +84,7 @@ public class LearningLeaderFragment extends Fragment {
                                 Collections.sort(mTopLearners, new Comparator<Student>() {
                                     @Override
                                     public int compare(Student s1, Student s2) {
-                                        return - Integer.compare(s1.getHours(), s2.getHours());
+                                        return -Integer.compare(s1.getHours(), s2.getHours());
                                     }
                                 });
                                 mTopLearnersAdapter.notifyDataSetChanged();

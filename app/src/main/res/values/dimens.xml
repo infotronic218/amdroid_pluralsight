@@ -11,4 +11,5 @@
     inner_frame_layout_padding (below variable) on round screens.
     -->
     <item name="submit_edit_text_size" type="dimen">20sp</item>
+    <dimen name="title">25sp</dimen>
 </resources>

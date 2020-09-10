@@ -4,6 +4,7 @@
     <string name="student_badge">badge</string>
     <string name="name">0X Kowama</string>
     <string name="details">30 Learning hours, Burkina</string>
+    <string name="leaderbord">LEADERBORD</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
