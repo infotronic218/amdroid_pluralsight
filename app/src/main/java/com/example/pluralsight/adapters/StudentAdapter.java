@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pluralsight.R;
@@ -38,14 +39,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         Student student = students.get(position);
         holder.name.setText(student.getName());
         //TODO to refactor later
-       String details;
+        String details;
         if (student.getScore() == 0) {
             details = String.format("%d learning hours, %s", student.getHours(),
                     student.getCountry());
+            holder.badge.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.top_learner));
 
         } else {
             details = String.format("%d skill IQ score, %s", student.getScore(),
                     student.getCountry());
+            holder.badge.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.skill_iq_trimmed));
         }
         holder.details.setText(details);
 
@@ -56,7 +59,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         return students.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView badge;
         public TextView name, details;
 
