@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <ImageView
+        android:layout_width="100dp"
+        android:id="@+id/badge"
+        android:layout_height="wrap_content"
+        android:src="@drawable/top_learner"
+        android:contentDescription="@string/student_badge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:textSize="30sp"
+        android:layout_toEndOf="@id/badge"
+        android:text="@string/name"
+        android:layout_alignTop="@+id/badge"
+        />
+
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@id/badge"
+        android:text="@string/details"/>
+
+</RelativeLayout>

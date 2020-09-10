@@ -4,10 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.LearningLeaderFragment">
-
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/learning_leader_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>
