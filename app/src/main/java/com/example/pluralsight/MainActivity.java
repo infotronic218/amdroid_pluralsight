@@ -1,25 +1,25 @@
 package com.example.pluralsight;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.pluralsight.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private   Toolbar toolbar;
-    private Button open_submit ;
+    private Toolbar toolbar;
+    private Button open_submit;
     private ViewPager viewPager;
-    private TabLayout tabLayout ;
+    private TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.main_activity_view_pager);
         tabLayout = findViewById(R.id.main_activity_tabLayout);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this,
+                getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -45,10 +46,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Open submit activity on button clicked
-    private View.OnClickListener openSubmitActivity= new View.OnClickListener(){
+    private View.OnClickListener openSubmitActivity = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent openIntent = new Intent(MainActivity.this, SubmitActivity.class);
+            Intent openIntent = new Intent(MainActivity.this,
+                    SubmitActivity.class);
             startActivity(openIntent);
         }
     };

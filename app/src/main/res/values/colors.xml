@@ -2,7 +2,13 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#181819</color>
+<<<<<<< HEAD
     <color name="colorAccent">#03DAC5</color>
     <color name="backgroundDark">#000001</color>
+=======
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="backgroundDark">#181819</color>
+>>>>>>> d6a42d76eb94bf61cc50d1669b3a56de908f4955
     <color name="buttonSubmitColor">#EF9D23</color>
+    <color name="white">#FFFFFF</color>
 </resources>
