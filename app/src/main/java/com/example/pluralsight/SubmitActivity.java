@@ -1,11 +1,17 @@
 package com.example.pluralsight;
 
+import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -13,17 +19,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.pluralsight.utils.InterfaceAPI;
+import com.example.pluralsight.utils.RetrofitCreator;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class SubmitActivity extends AppCompatActivity  {
     private Toolbar toolbar ;
-    //private static final int  FRAGMENT_CONTAINER_ID = R.id.submit_fragment_container;
-    private FragmentManager fragmentManager;
-
     private EditText editTextLastName;
     private EditText editTextFistName ;
     private EditText editTextEmail ;
     private EditText editTextLink ;
     private Button buttonSubmit ;
     private LinearLayout linearLayoutFormContainer;
+    AlertDialog confirmDialog ;
+    ProgressDialog progressDialog ;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +55,6 @@ public class SubmitActivity extends AppCompatActivity  {
                 finish();
             }
         });
-        /*
-        fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(FRAGMENT_CONTAINER_ID,SubmitFormFragment.newInstance(this))
-                .commit();
-        */
 
         editTextLastName = findViewById(R.id.submit_editext_last_name);
         editTextFistName = findViewById(R.id.submit_editext_first_name);
@@ -60,14 +72,16 @@ public class SubmitActivity extends AppCompatActivity  {
 
     }
 
-
-
     private View.OnClickListener submitButtonClicked = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            String firstName = editTextFistName.getText().toString();
+            String lastName = editTextLastName.getText().toString();
+            String email= editTextEmail.getText().toString();
+            String project_link = editTextLink.getText().toString();
+
            linearLayoutFormContainer.setVisibility(View.INVISIBLE);
-            showFailedSubmit();
-            showSuccessfullySubmit();
+           showConfirmAndSubmitDialog(firstName, lastName, email, project_link);
         }
     };
 
@@ -77,6 +91,7 @@ public class SubmitActivity extends AppCompatActivity  {
                 .inflate(R.layout.submit_success_dialog, null, false);
         builder.setView(view);
         AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
     }
 
@@ -86,15 +101,67 @@ public class SubmitActivity extends AppCompatActivity  {
                 .inflate(R.layout.submit_failed_dialog, null, false);
         builder.setView(view);
         AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
     }
 
-    private void showConfirmDialog(){
+    private void showConfirmAndSubmitDialog(final String firstName, final String lastName, final String email, final String project_link){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View  view = LayoutInflater.from(this)
                 .inflate(R.layout.submit_confirm_dialog, null, false);
         builder.setView(view);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        Button confirm =  view.findViewById(R.id.button_submit_confirm);
+        LinearLayout cancel = view.findViewById(R.id.cancel_parent_submission);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                submitProject(firstName, lastName, email, project_link);
+                progressDialog = new ProgressDialog(SubmitActivity.this);
+                progressDialog.setTitle("Project Uploading");
+                progressDialog.setMessage("Wait util project submitted !");
+                progressDialog.show();
+                if(confirmDialog!=null) confirmDialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                linearLayoutFormContainer.setVisibility(View.VISIBLE);
+                if(confirmDialog!=null) confirmDialog.dismiss();
+            }
+        });
+        confirmDialog = builder.create();
+        confirmDialog.setCancelable(false);
+        confirmDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        confirmDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        confirmDialog.show();
     }
+
+    private void submitProject(String firstName, String lastName, String email, String project_link){
+        Retrofit  retrofit = RetrofitCreator.getRetrofitInstance() ;
+        final InterfaceAPI api = retrofit.create(InterfaceAPI.class);
+        Call<Void> call = api.submitProject(firstName, lastName,email,project_link);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                progressDialog.dismiss();
+                if(response.isSuccessful()){
+                    showSuccessfullySubmit();
+                    Log.d("API", response.toString());
+                }else{
+                    showFailedSubmit();
+                    linearLayoutFormContainer.setVisibility(View.VISIBLE);
+                    Log.d("API", response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+               progressDialog.dismiss();
+            }
+        });
+    }
+
+
 }
