@@ -1,4 +1,4 @@
-package com.example.pluralsight.adapters;
+package com.example.infotronic.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pluralsight.R;
-import com.example.pluralsight.models.Student;
+import com.example.infotronic.R;
+import com.example.infotronic.models.Student;
 
 import java.util.List;
 

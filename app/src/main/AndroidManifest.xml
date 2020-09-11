@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pluralsight">
+    package="com.example.infotronic">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SubmitActivity"
+            android:name="com.example.infotronic.SubmitActivity"
             android:label="@string/title_activity_submit"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.infotronic.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.example.infotronic.MainActivity" />
+        <activity android:name="com.example.infotronic.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

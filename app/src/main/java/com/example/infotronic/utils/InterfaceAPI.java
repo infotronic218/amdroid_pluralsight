@@ -1,4 +1,4 @@
-package com.example.pluralsight.utils;
+package com.example.infotronic.utils;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

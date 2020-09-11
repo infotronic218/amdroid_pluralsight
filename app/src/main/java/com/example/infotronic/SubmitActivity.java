@@ -1,4 +1,4 @@
-package com.example.pluralsight;
+package com.example.infotronic;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -11,24 +11,19 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.pluralsight.utils.InterfaceAPI;
-import com.example.pluralsight.utils.RetrofitCreator;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.infotronic.utils.InterfaceAPI;
+import com.example.infotronic.utils.RetrofitCreator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SubmitActivity extends AppCompatActivity  {
     private Toolbar toolbar ;

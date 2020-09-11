@@ -1,4 +1,4 @@
-package com.example.pluralsight;
+package com.example.infotronic;
 
 import androidx.appcompat.app.AppCompatActivity;
 

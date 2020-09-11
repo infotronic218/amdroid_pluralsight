@@ -1,4 +1,4 @@
-package com.example.pluralsight.fragments;
+package com.example.infotronic.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -19,9 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.pluralsight.R;
-import com.example.pluralsight.adapters.StudentAdapter;
-import com.example.pluralsight.models.Student;
+import com.example.infotronic.R;
+import com.example.infotronic.adapters.StudentAdapter;
+import com.example.infotronic.models.Student;
 
 import org.json.JSONArray;
 import org.json.JSONException;

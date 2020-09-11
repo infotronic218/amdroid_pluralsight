@@ -1,4 +1,4 @@
-package com.example.pluralsight.models;
+package com.example.infotronic.models;
 
 public class Student {
     private String name;
