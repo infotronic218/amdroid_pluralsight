@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="50in"
     android:background="@drawable/dialog_shape">
 
     <LinearLayout
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/cancel_parent_submission"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:orientation="vertical"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:background="#9C27B0"
+        android:background="@drawable/cancel_submission_close_icon_shape"
         android:layout_marginEnd="16dp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,15 +38,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/cancel_parent_submission" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/button_submit_confirm"
+        android:layout_width="120dp"
+        android:layout_height="46dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/confirm_submission_button_shape"
         android:text="YES"
+        android:textColor="#FF9800"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
