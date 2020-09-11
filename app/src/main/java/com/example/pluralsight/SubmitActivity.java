@@ -66,7 +66,8 @@ public class SubmitActivity extends AppCompatActivity  {
         @Override
         public void onClick(View view) {
            linearLayoutFormContainer.setVisibility(View.INVISIBLE);
-           showSuccessfullySubmit();
+            showFailedSubmit();
+            showSuccessfullySubmit();
         }
     };
 
